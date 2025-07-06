@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1> Welcome to Movie Reservation System </h1>
+<p> Explore upcoming movies and book your seats! </p>
+
+<h3>Available Movies</h3>
+<ul>
+    {% for movie in movies %}
+        <li>{{ movie.title }} - {{ movie.genre.name }} </li>
+    {% empty %}
+        <li>No movies yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <h2>Movies</h2>
+    <ul>
+        {% for movie in movies %}
+        <li>{{movie.title}} - Genre: {{ movie.genre.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Showtimes</h2>
+    <ul>
+        {% for show in showtimes %}
+        <li> {{ show.movie.title }} | {{ show.start_time }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Reservations</h2>
+    <ul>
+        {% for res in reservations %}
+            <li>{{ res.user.username }} reserved {{res.seat.seat_number }} for {{res.seat.showtime.movie.title }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2> Users</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username }} <a href='#'>[Promote]</a></li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
