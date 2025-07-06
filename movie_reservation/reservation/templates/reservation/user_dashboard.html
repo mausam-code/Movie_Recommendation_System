@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
-<body>
-    <h1>Welcome {{request.user.username}}</h1>
-    <h2>Upcoming Reservations</h2>
-    <ul>
-        {% for res in upcoming_reservations %}
-        <li>{{res.seat.showtime.movie.title}} - {{ res.seat.seat_number }} at {{ res.seat.showtime.start_time }}</li>
-        {% empty %}
-            <li>No reservations</li>
-        {% endfor %}
-    </ul>
+{% extends 'base.html' %}
 
-    <h2>Available Movies</h2>
-    <ul>
-        {% for movie in movies %}
-        <li> {{ movie.title }} - {{ movie.genre.name }}<a href='#'>[Reserve]</a></li>
-        {% endfor %}
-    </ul>
+{% block content %}
+<h1>Welcome {{ request.user.username }}</h1>
+
+<h2 class="mt-4">📅 Upcoming Reservations</h2>
+<ul class="list-group mb-4">
+    {% for res in upcoming_reservations %}
+        <li class="list-group-item">
+            {{ res.seat.showtime.movie.title }} - {{ res.seat.seat_number }} at {{ res.seat.showtime.start_time }}
+        </li>
+    {% empty %}
+        <li class="list-group-item">No reservations</li>
+    {% endfor %}
+</ul>
+
+<h2>🎬 Available Movies</h2>
+<ul class="list-group">
+    {% for movie in movies %}
+        <li class="list-group-item">
+            {{ movie.title }} - {{ movie.genre.name }} <a href="#" class="btn btn-sm btn-success float-end">Reserve</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
